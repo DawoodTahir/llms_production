@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1><strong>Speculative Decoding</strong></h1><br><br><strong>LLMs</strong> usually generates the response word by word, while for each generated word it has to look back to all of the previous words (<strong>tokens</strong>) to compute the next word to come. This process with a Target model takes a lot of time and hence the end-user might call the app as slow and leave.<br><br><br><br>This is when '<strong>Speculative Decoding</strong>' comes handy; It lets the smaller draft model generate the answer that might be a bit inaccurate or hallucinative but super quicker. Bigger target model would check the result of Draft model with its higher wisdom to either accept or reject some of their words. This whole process helps reduce the latency per token from <strong>~80ms</strong> to <strong>~30ms</strong>, which is quite effective when considered in the whole pipeline</div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3>Installing the required libraries</h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [1]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>!pip install -U transformers accelerate bitsandbytes</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Requirement already satisfied: transformers in /usr/local/lib/python3.12/dist-packages (5.0.0)
+Collecting transformers
+  Downloading transformers-5.1.0-py3-none-any.whl.metadata (31 kB)
+Requirement already satisfied: accelerate in /usr/local/lib/python3.12/dist-packages (1.12.0)
+Collecting bitsandbytes
+  Downloading bitsandbytes-0.49.1-py3-none-manylinux_2_24_x86_64.whl.metadata (10 kB)
+Requirement already satisfied: huggingface-hub&lt;2.0,&gt;=1.3.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (1.3.7)
+Requirement already satisfied: numpy&gt;=1.17 in /usr/local/lib/python3.12/dist-packages (from transformers) (2.0.2)
+Requirement already satisfied: packaging&gt;=20.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (26.0)
+Requirement already satisfied: pyyaml&gt;=5.1 in /usr/local/lib/python3.12/dist-packages (from transformers) (6.0.3)
+Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.12/dist-packages (from transformers) (2025.11.3)
+Requirement already satisfied: tokenizers&lt;=0.23.0,&gt;=0.22.0 in /usr/local/lib/python3.12/dist-packages (from transformers) (0.22.2)
+Requirement already satisfied: typer-slim in /usr/local/lib/python3.12/dist-packages (from transformers) (0.21.1)
+Requirement already satisfied: safetensors&gt;=0.4.3 in /usr/local/lib/python3.12/dist-packages (from transformers) (0.7.0)
+Requirement already satisfied: tqdm&gt;=4.27 in /usr/local/lib/python3.12/dist-packages (from transformers) (4.67.2)
+Requirement already satisfied: psutil in /usr/local/lib/python3.12/dist-packages (from accelerate) (5.9.5)
+Requirement already satisfied: torch&gt;=2.0.0 in /usr/local/lib/python3.12/dist-packages (from accelerate) (2.9.0+cu126)
+Requirement already satisfied: filelock in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (3.20.3)
+Requirement already satisfied: fsspec&gt;=2023.5.0 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (2025.3.0)
+Requirement already satisfied: hf-xet&lt;2.0.0,&gt;=1.2.0 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (1.2.0)
+Requirement already satisfied: httpx&lt;1,&gt;=0.23.0 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (0.28.1)
+Requirement already satisfied: shellingham in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (1.5.4)
+Requirement already satisfied: typing-extensions&gt;=4.1.0 in /usr/local/lib/python3.12/dist-packages (from huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (4.15.0)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (75.2.0)
+Requirement already satisfied: sympy&gt;=1.13.3 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (1.14.0)
+Requirement already satisfied: networkx&gt;=2.5.1 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.6.1)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.1.6)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.6.77)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.6.80)
+Requirement already satisfied: nvidia-cudnn-cu12==9.10.2.21 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (9.10.2.21)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.6.4.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (11.3.0.4)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.7.1 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (0.7.1)
+Requirement already satisfied: nvidia-nccl-cu12==2.27.5 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (2.27.5)
+Requirement already satisfied: nvidia-nvshmem-cu12==3.3.20 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.3.20)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.6.77)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (12.6.85)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (1.11.1.6)
+Requirement already satisfied: triton==3.5.0 in /usr/local/lib/python3.12/dist-packages (from torch&gt;=2.0.0-&gt;accelerate) (3.5.0)
+Requirement already satisfied: click&gt;=8.0.0 in /usr/local/lib/python3.12/dist-packages (from typer-slim-&gt;transformers) (8.3.1)
+Requirement already satisfied: anyio in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (4.12.1)
+Requirement already satisfied: certifi in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (2026.1.4)
+Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (1.0.9)
+Requirement already satisfied: idna in /usr/local/lib/python3.12/dist-packages (from httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (3.11)
+Requirement already satisfied: h11&gt;=0.16 in /usr/local/lib/python3.12/dist-packages (from httpcore==1.*-&gt;httpx&lt;1,&gt;=0.23.0-&gt;huggingface-hub&lt;2.0,&gt;=1.3.0-&gt;transformers) (0.16.0)
+Requirement already satisfied: mpmath&lt;1.4,&gt;=1.1.0 in /usr/local/lib/python3.12/dist-packages (from sympy&gt;=1.13.3-&gt;torch&gt;=2.0.0-&gt;accelerate) (1.3.0)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in /usr/local/lib/python3.12/dist-packages (from jinja2-&gt;torch&gt;=2.0.0-&gt;accelerate) (3.0.3)
+Downloading transformers-5.1.0-py3-none-any.whl (10.3 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m10.3/10.3 MB[0m [31m60.0 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading bitsandbytes-0.49.1-py3-none-manylinux_2_24_x86_64.whl (59.1 MB)
+[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m59.1/59.1 MB[0m [31m16.7 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: bitsandbytes, transformers
+  Attempting uninstall: transformers
+    Found existing installation: transformers 5.0.0
+    Uninstalling transformers-5.0.0:
+      Successfully uninstalled transformers-5.0.0
+Successfully installed bitsandbytes-0.49.1 transformers-5.1.0
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">We are going to test it with smaller models that are able to fit in the RAM of Colab's free version T4 GPU. For this purpose we are going to select <strong>Llama-3.2-3B-Instruct</strong> & <strong>Llama-3.2-1B-Instruct</strong> as target and draft models respectively.<br><br><br>For this make sure you have Been granted access from huggingface and have the necessary huggingdace API. Define your API by pressing the "key" icon on the left panee. Give the variable name as <strong>"HF_TOKEN"</strong> & the API KEY as the value.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [2]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import os
+hf_token = os.environ.get("HF_TOKEN")
+
+if hf_token:
+    print("Hugging Face API token loaded successfully from environment variable.")
+else:
+    print("Hugging Face API token not available.")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Hugging Face API token not available.
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [3]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import torch
+import time
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+target_model = "meta-llama/Llama-3.2-3B-Instruct"
+draft_model = "meta-llama/Llama-3.2-1B-Instruct"
+
+tokenizer = AutoTokenizer.from_pretrained(target_model)
+model = AutoModelForCausalLM.from_pretrained(target_model, torch_dtype=torch.float16, device_map="cuda")
+draft_model = AutoModelForCausalLM.from_pretrained(draft_model, torch_dtype=torch.float16, device_map="cuda")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>config.json:   0%|          | 0.00/878 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>tokenizer_config.json:   0%|          | 0.00/54.5k [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>tokenizer.json:   0%|          | 0.00/9.09M [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>special_tokens_map.json:   0%|          | 0.00/296 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">`torch_dtype` is deprecated! Use `dtype` instead!
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>model.safetensors.index.json:   0%|          | 0.00/20.9k [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Downloading (incomplete total...): 0.00B [00:00, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Fetching 2 files:   0%|          | 0/2 [00:00&lt;?, ?it/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Loading weights:   0%|          | 0/254 [00:00&lt;?, ?it/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>generation_config.json:   0%|          | 0.00/189 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>config.json:   0%|          | 0.00/877 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>model.safetensors:   0%|          | 0.00/2.47G [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>Loading weights:   0%|          | 0/146 [00:00&lt;?, ?it/s]</pre></div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-result"><pre>generation_config.json:   0%|          | 0.00/189 [00:00&lt;?, ?B/s]</pre></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">Just as you ask different length of sentences when using Gemini or ChatGPT, your production app is expected to behave the same way. Lets try a <strong>targert_len</strong> of <strong>800 token</strong> to be generated and compare speculative decoding with the standard one.<br><br>The key is in using the inpour argument of <strong>assitant_model</strong> as;<br><br><br><code>assistant_model=draft_model if use_assistant else None</code><br><br>This is a built-in method by Transformers for <strong>specualtive decoding</strong>.</div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [4]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import torch
+import time
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+prompt = """
+Write a massive, 800-token SQL schema and Python ETL pipeline for a
+global logistics company. Include tables for 'shipments', 'sensors',
+'drivers', and 'warehouses'. Write long docstrings for every function
+and complex nested joins in the SQL queries.
+"""
+input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to("cuda")
+target_len = 800
+
+def run_extreme_benchmark(use_assistant):
+    torch.cuda.empty_cache()
+    start_time = time.time()
+
+    outputs = model.generate(
+        input_ids,
+        assistant_model=draft_model if use_assistant else None,
+        num_assistant_tokens=10, # The 'K' factor. 10 guesses per cycle.
+        max_new_tokens=target_len,
+        do_sample=False,
+        temperature=None, # Pure greedy for max stability
+        top_p=None
+    )
+
+    end_time = time.time()
+    total_time = end_time - start_time
+    actual_tokens = outputs.shape[1] - input_ids.shape[1]
+
+    return np.linspace(0, total_time, actual_tokens)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h2><strong>Plot the Inference </strong></h2></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>
+std_trace = run_extreme_benchmark(False)
+
+spec_trace = run_extreme_benchmark(True)
+
+plt.figure(figsize=(12, 8), facecolor='white')
+plt.plot(std_trace, np.arange(len(std_trace)), color='#FF4B2B', label='Standard 3B (One-by-One)', lw=3)
+plt.plot(spec_trace, np.arange(len(spec_trace)), color='#00D4FF', label='Speculative Team (3B + 1B)', lw=4)
+
+plt.fill_betweenx(np.arange(len(spec_trace)), spec_trace, std_trace[:len(spec_trace)],
+                 color='gray', alpha=0.1, label='Efficiency Gain')
+
+plt.title("The Production Speed Gap: Scaling to 800 Tokens", fontsize=18, fontweight='bold')
+plt.xlabel("Seconds Elapsed", fontsize=12)
+plt.ylabel("Tokens Generated", fontsize=12)
+plt.legend(loc='upper left')
+plt.grid(alpha=0.2)
+
+savings = std_trace[-1] - spec_trace[-1]
+print(f"Total Time Saved: {savings:.2f} seconds!")
+plt.show()</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream output-stderr">The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Passing `generation_config` together with generation-related arguments=({'max_new_tokens', 'min_new_tokens', 'use_cache'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+Both `max_new_tokens` (=20) and `max_length`(=861) seem to have been set. `max_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+Both `min_new_tokens` (=0) and `min_length`(=0) seem to have been set. `min_new_tokens` will take precedence. Please refer to the documentation for more information. (https://huggingface.co/docs/transformers/main/en/main_classes/text_generation)
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">Total Time Saved: 28.60 seconds!
+</div>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <img class="output-image" src="data:image/png;base64,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a+IXLFigjRtLp+0uvvhiTZ06VWPGjFF+fn7ZOfn5+XrwwQc1depUXXrppZXfLYBKcXeO9JNDTnfLakpmQH5WPCGaBUvkee9FJd7e3THA27oHSA88I/W9iwAPAACqnb0O8aeffrrmzJkjSbr//vt16qmn6o477lB6erqaNGmiJk2aKD09XcOGDdOpp56q++67b5+bmTRpklq2bKmUlBSlpKQoKytLH330UVk9EAioX79+yszMVFJSkrp166YNGzaUe4w1a9aoS5cuSkhIUJ06dXTLLbeouLh4n3sBqqvP86VHNzvXbkkp1NHeoHMRiAKutb8rYXgf+WdMkCkqDKnbc66QmfCW1PL4CHQHAABQ9fZ6Of3/3/8uISFB8+bN0zvvvFPuPvFnnXWWzj77bJ177rkV2rzgwAMP1JgxY3TooYfKWqvnnntO559/vr799lsdccQRGjJkiD744APNnDlTqamp6t+/v7p27aovvvhCklRSUqIuXbqoXr16+vLLL7V+/Xp1795dHo9HDzzwwD73A1Q3O0qkHmslp90sW3tKdEtqaCgCokJJsbzvz5D3jWnO4b1eQ+247jYltT1VYvMcAABQje317vQul0svvviirrjiiqruqZyMjAw9/PDDuuiii1S7dm3NmDFDF110kSRpxYoVat68uRYuXKh27drpo48+0jnnnKN169apbt26kqTJkyfrtttu08aNG+X1eh2fo6CgQAUF/11bnJeXp4YNG2rbtm3sTo9q5cb10uStoWPFK6sF9fLV3LPvs/DsTo+q5vrzV8VPGSX3b6F3PLHGSOddJXtVf+UGCvl+iIjjZzOiAeMQ0YBxuO/y8vKUlpZWubvTh/PFLykp0cyZM5Wfn6+srCwtWbJERUVFat++fdk5zZo1U6NGjcpC/MKFC3XUUUeVBXipdKf8vn376scff9TRRx/t+FyjR4/WiBEjQo7n5uaqAnfgCxtrrXbs2CEpvJ8bxKZPAnGavNX59lq3+PN0YGCHtgcq9tg7d+5kDKLylRQrafZrSnz/JZmS0MuiSuo11M7ew1RyWEvZQCHfDxEV+NmMaMA4RDRgHO67vLy8vTpvn0L8VVddpauuumqvzjXGVOha9OXLlysrK0uBQEBJSUl666231KJFCy1btkxer1dpaWnlzq9bt66ys7MlSdnZ2eUC/O767tqeDBs2TEOHDi17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jBl65513lJycXHY9XWpqquLj45Wamqprr71WQ4cOVUZGhlJSUjRgwABlZWWpXbt2Ee4e1cWwYcPUuXNnNWrUSNu3b9eMGTP02Wefafbs2YxBhE1ycnLZfiC7JSYmKjMzs+w4YxHhcPPNN+vcc89V48aNtW7dOg0fPlxut1uXX3453xOrCCE+Bl166aXauHGj7rnnHmVnZ6t169aaNWtWyKZiQGX65ptvdPrpp5e9PXToUElSjx499Oyzz+rWW29Vfn6+evfurW3btumkk07SrFmzuE4PlWrSpEmSpNNOO63c8enTp6tnz56SpLFjx8rlcqlbt24qKChQp06dNHHixDB3iuosJydH3bt31/r165WamqqWLVtq9uzZ6tChgyTGIKIHYxHh8Ndff+nyyy/X5s2bVbt2bZ100klatGiRateuLYlxWBWMtdZGugkAAAAAAPDPuCYeAAAAAIAYQYgHAAAAACBGEOIBAAAAAIgRhHgAAAAAAGIEIR4AAAAAgBhBiAcAAAAAIEYQ4gEAAAAAiBGEeAAAAAAAYgQhHgAA/C1jjO69995q/5xVoUmTJurZs2ek2wAAVCOEeAAA9tPy5ct10UUXqXHjxvL7/TrggAPUoUMHPfHEE5FuLao8++yzMsbs8d+iRYsi3SIAAFEvLtINAAAQy7788kudfvrpatSoka6//nrVq1dPf/75pxYtWqRx48ZpwIABkW4x6tx3331q2rRpyPFDDjkkAt0AABBbCPEAAOyHUaNGKTU1VYsXL1ZaWlq5Wk5OTmSainKdO3fWscceG+k2AACISSynBwBgP/z666864ogjQgK8JNWpUyfk2Isvvqg2bdooPj5eGRkZuuyyy/Tnn3+GnPfVV1/p7LPPVnp6uhITE9WyZUuNGzeu3DmffPKJTj75ZCUmJiotLU3nn3++fv7553Ln3HvvvTLG6JdfflHPnj2Vlpam1NRU9erVSzt37ix3bkFBgYYMGaLatWsrOTlZ5513nv7666+Q3rZv367BgwerSZMm8vl8qlOnjjp06KClS5fuzUtWIX/88YduvPFGHX744YqPj1dmZqYuvvhi/f777+XO271kf8GCBerTp48yMzOVkpKi7t27a+vWreXO/eabb9SpUyfVqlVL8fHxatq0qa655ppy5wSDQT3++OM64ogj5Pf7VbduXfXp0yfksay1GjlypA488EAlJCTo9NNP148//lglrwUAoGZjJh4AgP3QuHFjLVy4UD/88IOOPPLIvz131KhRuvvuu3XJJZfouuuu08aNG/XEE0/olFNO0bffflv2h4A5c+bonHPOUf369TVo0CDVq1dPP//8s95//30NGjRIkjR37lx17txZBx10kO69917t2rVLTzzxhE488UQtXbpUTZo0Kffcl1xyiZo2barRo0dr6dKlmjp1qurUqaMHH3yw7JzrrrtOL774oq644gqdcMIJ+uSTT9SlS5eQj+OGG27Q66+/rv79+6tFixbavHmzPv/8c/3888865phj/vE1y83N1aZNm8odM8YoMzNzj++zePFiffnll7rssst04IEH6vfff9ekSZN02mmn6aefflJCQkK58/v376+0tDTde++9WrlypSZNmqQ//vhDn332mYwxysnJUceOHVW7dm3dfvvtSktL0++//64333yz3OP06dNHzz77rHr16qWBAwdq9erVevLJJ/Xtt9/qiy++kMfjkSTdc889GjlypM4++2ydffbZWrp0qTp27KjCwsJ/fD0AANgnFgAAVNjHH39s3W63dbvdNisry95666129uzZtrCwsNx5v//+u3W73XbUqFHlji9fvtzGxcWVHS8uLrZNmza1jRs3tlu3bi13bjAYLPt/69atbZ06dezmzZvLjn333XfW5XLZ7t27lx0bPny4lWSvueaaco914YUX2szMzLK3ly1bZiXZG2+8sdx5V1xxhZVkhw8fXnYsNTXV9uvXby9enfKmT59uJTn+8/l85c793+fcuXNnyOMtXLjQSrLPP/98yHO0adOm3OfgoYcespLsO++8Y6219q233rKS7OLFi/fY77/+9S8ryb700kvljs+aNavc8ZycHOv1em2XLl3KfY7uuOMOK8n26NHjn18cAAD2EsvpAQDYDx06dNDChQt13nnn6bvvvtNDDz2kTp066YADDtC7775bdt6bb76pYDCoSy65RJs2bSr7V69ePR166KH69NNPJUnffvutVq9ercGDB4cs0TfGSJLWr1+vZcuWqWfPnsrIyCirt2zZUh06dNCHH34Y0ucNN9xQ7u2TTz5ZmzdvVl5eniSVvc/AgQPLnTd48OCQx0pLS9NXX32ldevW7eWrVN6ECRM0Z86ccv8++uijv32f+Pj4sv8XFRVp8+bNOuSQQ5SWlua4jL93795ls+SS1LdvX8XFxZV9nLtf2/fff19FRUWOzzlz5kylpqaqQ4cO5T5nbdq0UVJSUtnnbO7cuSosLNSAAQPKPkeS82sHAMD+Yjk9AAD76bjjjtObb76pwsJCfffdd3rrrbc0duxYXXTRRVq2bJlatGihVatWyVqrQw891PExdgfOX3/9VZL+dmn+H3/8IUk6/PDDQ2rNmzfX7NmzlZ+fr8TExLLjjRo1Kndeenq6JGnr1q1KSUnRH3/8IZfLpYMPPrjceU7P8dBDD6lHjx5q2LCh2rRpo7PPPlvdu3fXQQcdtMee/7/jjz9+nze227Vrl0aPHq3p06dr7dq1staW1XJzc0PO/9/XOSkpSfXr1y+7hv7UU09Vt27dNGLECI0dO1annXaaLrjgAl1xxRXy+XySpFWrVik3N9dxbwPpvxsX7v58/O9z1q5du+x1BgCgshDiAQCoJF6vV8cdd5yOO+44HXbYYerVq5dmzpyp4cOHKxgMyhijjz76SG63O+R9k5KSqrQ3p+eUVC4M761LLrlEJ598st566y19/PHHevjhh/Xggw/qzTffVOfOnfe3VUcDBgzQ9OnTNXjwYGVlZSk1NVXGGF122WUKBoP7/HjGGL3++utatGiR3nvvPc2ePVvXXHONHn30US1atEhJSUkKBoOqU6eOXnrpJcfHqF279v5+WAAA7DNCPAAAVWD3TPP69eslSQcffLCstWratKkOO+ywPb7f7pnwH374Qe3bt3c8p3HjxpKklStXhtRWrFihWrVqlZuF3xuNGzdWMBjUr7/+Wm723ek5JKl+/fq68cYbdeONNyonJ0fHHHOMRo0aVWUh/vXXX1ePHj306KOPlh0LBALatm2b4/mrVq3S6aefXvb2jh07tH79ep199tnlzmvXrp3atWunUaNGacaMGbryyiv1yiuv6LrrrtPBBx+suXPn6sQTTyy3nP9/7f58rFq1qtxqhI0bN4bsYg8AwP7imngAAPbDp59+6jibvfva692BuGvXrnK73RoxYkTI+dZabd68WZJ0zDHHqGnTpnr88cdDAuru96tfv75at26t5557rtw5P/zwgz7++OOQoLo3dofv8ePHlzv++OOPl3u7pKQkZPl6nTp11KBBAxUUFOzz8+4tt9sd8ro98cQTKikpcTz/qaeeKnet+6RJk1RcXFz2cW7dujXk8Vq3bi1JZR/HJZdcopKSEt1///0hj19cXFz22rdv314ej0dPPPFEucf839cOAIDKwEw8AAD7YcCAAdq5c6cuvPBCNWvWTIWFhfryyy/16quvqkmTJurVq5ek0hn2kSNHatiwYfr99991wQUXKDk5WatXr9Zbb72l3r176+abb5bL5dKkSZN07rnnqnXr1urVq5fq16+vFStW6Mcff9Ts2bMlSQ8//LA6d+6srKwsXXvttWW3mEtNTdW99967zx9H69atdfnll2vixInKzc3VCSecoHnz5umXX34pd9727dt14IEH6qKLLlKrVq2UlJSkuXPnavHixeVmyf/ORx99pBUrVoQcP+GEE/Z4Xf0555yjF154QampqWrRooUWLlyouXPn7vG2dIWFhTrzzDN1ySWXaOXKlZo4caJOOukknXfeeZKk5557ThMnTtSFF16ogw8+WNu3b9fTTz+tlJSUsj+CnHrqqerTp49Gjx6tZcuWqWPHjvJ4PFq1apVmzpypcePG6aKLLlLt2rV18803a/To0TrnnHN09tln69tvv9VHH32kWrVq7dVrAgDAXovQrvgAAFQLH330kb3mmmtss2bNbFJSkvV6vfaQQw6xAwYMsBs2bAg5/4033rAnnXSSTUxMtImJibZZs2a2X79+duXKleXO+/zzz22HDh1scnKyTUxMtC1btrRPPPFEuXPmzp1rTzzxRBsfH29TUlLsueeea3/66ady5+y+xdzGjRvLHd99K7bVq1eXHdu1a5cdOHCgzczMtImJifbcc8+1f/75Z7nbvRUUFNhbbrnFtmrVqqy3Vq1a2YkTJ/7ja/V3t5iTZKdPn152rv7nFnNbt261vXr1srVq1bJJSUm2U6dOdsWKFbZx48blbuG2+znmz59ve/fubdPT021SUpK98sory92Ob+nSpfbyyy+3jRo1sj6fz9apU8eec8459ptvvgnp+6mnnrJt2rSx8fHxNjk52R511FH21ltvtevWrSs7p6SkxI4YMcLWr1/fxsfH29NOO83+8MMPIf0BALC/jLUV2NEGAAAgCj377LPq1auXFi9evM874AMAEAu4Jh4AAAAAgBhBiAcAAAAAIEYQ4gEAAAAAiBFcEw8AAAAAQIxgJh4AAAAAgBhBiAcAAAAAIEYQ4gEAAJt798MAAAA2SURBVAAAiBGEeAAAAAAAYgQhHgAAAACAGEGIBwAAAAAgRhDiAQAAAACIEYR4AAAAAABixP8Bzs40hfTOeeoAAAAASUVORK5CYII=
+" alt="Output" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h1>Analyzing Results</h1><br><br>Latency of That much difference is key in Production. its has a critical impact to decide if either you have a good Inference Engine or not.<br><br>For a Bigger Generation of <strong>800 Words(Tokens)</strong>, the latency is standing alone at more than <strong>10 seconds</strong>.<br><br>In Production, there is alot more to it. I ill be expalaining some more of the other key factors in the next ones.<br></div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
